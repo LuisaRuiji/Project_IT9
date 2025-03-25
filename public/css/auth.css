@@ -1,0 +1,80 @@
+/* 🟤 Skin-Tone Theme Variables */
+:root {
+    --primary: #A67B5B;
+    --secondary: #F5E8DD;
+    --accent: #6D4C41;
+    --background: #FAF5EF;
+    --text: #3E3E3E;
+    --gradient: linear-gradient(90deg, #A67B5B, #6D4C41);
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* 🪟 Glassmorphic Login Box */
+.login-container {
+    background: rgba(255, 255, 255, 0.2); /* Glass effect */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 350px;
+}
+
+/* 📝 Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid var(--primary);
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    color: var(--text);
+}
+
+/* 🎨 Gradient Button */
+.btn-login {
+    background: var(--gradient);
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+}
+
+.btn-login:hover {
+    opacity: 0.8;
+}
+
+/* 🔘 Social Login Icons */
+.social-icons {
+    margin-top: 15px;
+}
+
+.social-icons a {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 20px;
+    color: var(--accent);
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+    color: white;
+}

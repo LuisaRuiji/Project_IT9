@@ -1,52 +1,110 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+    <title>Register</title>
+</head>
+<body>
+@extends('layouts.auth')
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+@section('content')
+<div class="flex justify-center items-center min-h-screen bg-background">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-2xl shadow-md">
+        <h2 class="text-center text-2xl font-bold text-text">Register</h2>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+        <form method="POST" action="{{ route('register') }}">
+            @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+            <!-- Name -->
+            <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
+                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-accent focus:outline-none">
+                @error('name')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+            <!-- Email Address -->
+            <div class="mt-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                    class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-accent focus:outline-none">
+                @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+            <!-- Password -->
+<div class="mt-4">
+    <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+    <div class="relative w-full">
+        <input id="password" type="password" name="password"
+               class="block mt-1 w-full pr-10 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-indigo-300"
+               required autocomplete="new-password">
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+        <!-- Eye Icon Positioned Inside -->
+        <span class="absolute inset-y-0 right-3 flex items-center">
+            <i id="eyeIcon1" class="fas fa-eye text-gray-600 cursor-pointer" onclick="togglePassword('password', 'eyeIcon1')"></i>
+        </span>
+    </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+</div>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+<!-- Confirm Password -->
+<div class="mt-4">
+    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+    <div class="relative w-full">
+        <input id="password_confirmation" type="password" name="password_confirmation"
+               class="block mt-1 w-full pr-10 border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-indigo-300"
+               required autocomplete="new-password">
+               
+
+        <!-- Eye Icon Positioned Inside -->
+        <span class="absolute inset-y-0 right-3 flex items-center">
+            <i id="eyeIcon2" class="fas fa-eye text-gray-600 cursor-pointer" onclick="togglePassword('password_confirmation', 'eyeIcon2')"></i>
+        </span>
+    </div>
+
+    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+</div>
+
+
+
+            <div class="flex items-center justify-between mt-4">
+                <a href="{{ route('login') }}" class="text-sm text-gray-600 hover:text-accent">Already registered?</a>
+                <button type="submit"
+                    class="bg-primary text-white py-2 px-4 rounded-lg hover:bg-accent transition">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
+
+<script>
+function togglePassword(inputId, iconId) {
+    let inputField = document.getElementById(inputId);
+    let eyeIcon = document.getElementById(iconId);
+
+    if (inputField.type === "password") {
+        inputField.type = "text";
+        eyeIcon.classList.replace("fa-eye", "fa-eye-slash");
+    } else {
+        inputField.type = "password";
+        eyeIcon.classList.replace("fa-eye-slash", "fa-eye");
+    }
+}
+</script>
+
+
+</body>
+</html>

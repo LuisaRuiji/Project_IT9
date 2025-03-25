@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #A67B5B, #F5E8DD); /* Soft Brown to Warm Beige */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Card container */
+.login-box {
+    background: #FAF5EF; /* Light Cream */
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+}
+
+/* Title */
+.login-box h2 {
+    color: #3E3E3E; /* Dark Gray */
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Input Fields */
+.input-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #A67B5B; /* Soft Brown */
+    border-radius: 8px;
+    padding: 10px;
+    margin: 10px 0;
+    background: white;
+}
+
+.input-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    color: #3E3E3E; /* Dark Gray */
+    background: transparent;
+}
+
+.input-container i {
+    color: #A67B5B;
+    margin-right: 10px;
+}
+
+/* Login Button */
+button {
+    background: linear-gradient(to right, #A67B5B, #6D4C41); /* Soft Brown to Deep Brown */
+    color: white;
+    padding: 12px;
+    border: none;
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 10px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: linear-gradient(to right, #6D4C41, #3E3E3E);
+}
+
+/* Social Login Buttons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #A67B5B;
+    color: white;
+    font-size: 18px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #6D4C41;
+}
